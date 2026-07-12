@@ -46,9 +46,20 @@ main .game-status{
       margin: 2.25em auto;
       padding: 0.625em;
       text-align: center;
-      background-color: #10A95B;
       border-radius: 4px;
 
+}
+
+main .won{
+      background-color: #10A95B;
+}
+
+main .lost{
+      background-color: #BA2A2A;
+}
+
+main .going{
+      background-color: #7A5EA7;
 }
 
 main .game-status h2{
@@ -61,6 +72,13 @@ main .game-status p{
       font-weight: 500;
       font-size: 1rem;
       letter-spacing: 0%;
+}
+
+.farewell{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 0.5em;
 }
 
 main .languages{
@@ -118,6 +136,10 @@ main .guess-letter p{
       justify-content: center;
       align-items: center;
       border-bottom: 1px solid #F9F4DA;
+}
+
+main .guess-letter p.wrong{
+    color:#EC5D49;
 }
 
 main .keyboard{

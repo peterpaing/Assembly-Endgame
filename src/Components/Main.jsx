@@ -1,6 +1,7 @@
 import { useState } from "react"
 import{languages} from "./languages"
 import clsx from "clsx"
+import { getFarewellText } from "./utils"
 
 export default function Main(){
 
@@ -14,6 +15,7 @@ export default function Main(){
     
     const wrongCount = guess.filter(n => !guessLetter.includes(n)).length
     const isGameWon = [...guessLetter].every(letter => guess.includes(letter))
+    const isGameOver = wrongCount >= 8
     
     function languagesArr(){
         const langArray= languages.map(n=>{
@@ -39,7 +41,11 @@ export default function Main(){
 
 
     const RenderGuessLetter = guessLetter.split('').map(n=>{
-        return <p>{n.toUpperCase()}</p>
+        
+        return <p
+             className={clsx(isGameOver && !guess.includes(n) ? "wrong" : '')}>
+            {isGameOver || guess.includes(n) ? n.toUpperCase():''}
+            </p>
     })
 
 
@@ -65,22 +71,29 @@ export default function Main(){
         setGuess(prev => [...prev,letter])
     }
 
-    
+    function newGameBtn (){
+        
+    }
     
     return (
         <main>
 
-            {isGameWon || wrongCount>=8 ?<section className="game-status">
+            {isGameWon ? (
+                <section className="game-status won">
+                    <h2>You win!</h2>
+                    <p>Well done! 🎉</p>
+                </section> 
+            ) : isGameOver ? (
+                <section className="game-status lost">
+                    <h2>Game over!</h2>
+                    <p>You lose! Better start learning Assembly 😭</p>
+                </section>
+            ) : wrongCount>=1 ?(
+                <section className="game-status going">
+               <p className="farewell">{getFarewellText(lang[wrongCount-1]?.n)}</p>
+               </section>
+            ) :''}
 
-            <h2>
-                {wrongCount>=8 ?"Game over!": isGameWon ?"You win!" : ''}
-            </h2>
-
-            <p>
-                {wrongCount>=8 ?"You lose! Better start learning Assembly 😭": isGameWon ? "Well done!🎉" : ''}
-            </p>
-
-            </section> : ''}
 
             <section className="languages">
                 {RenderLanguages}
@@ -94,7 +107,7 @@ export default function Main(){
                 {RenderKeyboard}
             </section>
 
-            { isGameWon ||wrongCount >= 8 ?<button className="new-game">New Game</button>:''}
+            { isGameWon || isGameOver ?<button className="new-game" onClick={newGameBtn}>New Game</button>:''}
 
         </main>
     )
