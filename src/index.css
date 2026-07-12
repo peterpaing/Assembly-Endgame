@@ -189,6 +189,7 @@ main .keyboard button:nth-child(21) {
   display: block;
   margin: auto;
   background-color: #11B5E5;
+  color:#1E1E1E;
   font-family: "Hanken Grotesk", sans-serif;
   font-weight: 600;
   font-size: 16px;
