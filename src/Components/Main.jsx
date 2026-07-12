@@ -1,16 +1,17 @@
 import { useState } from "react"
 import{languages} from "./languages"
 import clsx from "clsx"
-import { getFarewellText } from "./utils"
+import { getRandomWord,getFarewellText } from "./utils"
+import Confetti from 'react-confetti'
 
 export default function Main(){
 
     const keyboard = ["q","w","e","r","t","y","u","i","o","p","a","s","d","f","g","h","j","k","l","z","x","c","v","b","n","m"]
 
     const [lang , setLang] =useState(()=>languagesArr())
-    const [guessLetter , setGuessLetter]= useState('react') 
+    const [guessLetter , setGuessLetter]= useState(()=>getRandomWord()) 
     const [guess , setGuess] =useState([])
-    const [keyboardBtn , setKeyboardBtn]= useState(keyboard)
+    
     
     
     const wrongCount = guess.filter(n => !guessLetter.includes(n)).length
@@ -40,16 +41,17 @@ export default function Main(){
     })
 
 
-    const RenderGuessLetter = guessLetter.split('').map(n=>{
+    const RenderGuessLetter = guessLetter.split('').map((n,index)=>{
         
         return <p
+            key ={index}
              className={clsx(isGameOver && !guess.includes(n) ? "wrong" : '')}>
             {isGameOver || guess.includes(n) ? n.toUpperCase():''}
             </p>
     })
 
 
-    const RenderKeyboard = keyboardBtn.map(n=>{
+    const RenderKeyboard = keyboard.map(n=>{
 
         const isGuess = guess.includes(n)
         const isCorrect = guessLetter.includes(n)
@@ -59,10 +61,10 @@ export default function Main(){
            btnClass = isCorrect ? "correct" : "wrong"
         }
 
-
         return <button 
         className={btnClass}
         onClick={()=>check(n)}
+        disabled={isGameOver || isGameWon}
         >{n.toUpperCase()}
         </button>
     })
@@ -72,12 +74,13 @@ export default function Main(){
     }
 
     function newGameBtn (){
-        
+        setGuessLetter(getRandomWord())
+        setGuess([])
     }
     
     return (
         <main>
-
+           {isGameWon ? <Confetti/> : ''}
             {isGameWon ? (
                 <section className="game-status won">
                     <h2>You win!</h2>
