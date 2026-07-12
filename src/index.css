@@ -59,3 +59,43 @@ main .game-status p{
       font-size: 1rem;
       letter-spacing: 0%;
 }
+
+main .languages{
+      display: flex;
+      flex-wrap: wrap;
+      max-width: 306px;
+      margin: 35px auto;
+      gap: 1.5px;
+}
+main .languages p{
+      margin-top: 1px;
+      padding: 9px;
+      font-weight: 700;
+      font-size: 12px;
+      line-height: 100%;
+      text-align: center;
+      border-radius: 3px;
+      position: relative;
+}
+
+main .languages :nth-child(6){
+      margin-left: 30px;
+} 
+
+main .languages p::before {
+    content: "💀";
+    position: absolute;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    font-size: 0.85rem;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    border-radius: 3px;
+}
+
+
+
