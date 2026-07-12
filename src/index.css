@@ -10,15 +10,25 @@ body{
       background-color: #282726;
       font-family: "Hanken Grotesk", sans-serif;
       color:#F9F4DA;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      
 }
 
 header{
      width: 100%;
-     padding-top: 3.125em;
+     padding-top: 0.1em;
      display: flex;
      flex-direction: column;
      text-align: center;
-     gap: 0.5em;
+     gap: 1em;
+}
+
+header img{
+      width: 150px;
+      display: block;
+      margin: auto;
 }
 
 header h1{
@@ -33,13 +43,13 @@ header p{
       font-weight: 500;
       font-size: 0.875rem;
       color:#8E8E8E;
-      line-height: 100%;
+      line-height: 150%;
 }
 
 main .game-status{
       max-width: 352px;
       max-height: 59px;
-      margin: 1.25em auto;
+      margin: 2.25em auto;
       padding: 0.625em;
       text-align: center;
       background-color: #10A95B;
@@ -95,6 +105,26 @@ main .languages p::before {
       left: 0;
       background-color: rgba(0, 0, 0, 0.7);
       border-radius: 3px;
+}
+
+main .guess-letter{
+      margin-top: 2.25em;
+      display: flex;
+      justify-content: center;
+      gap: 0.2rem;
+}
+
+main .guess-letter p{
+      width: 40px;
+      height: 40px;
+      background-color: #323232;
+      color: #F9F4DA;
+      font-weight: 700;
+      font-size: 1.125rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-bottom: 1px solid #F9F4DA;
 }
 
 main .keyboard{

@@ -6,7 +6,8 @@ export default function Main(){
     const keyboard = ["q","w","e","r","t","y","u","i","o","p","a","s","d","f","g","h","j","k","l","z","x","c","v","b","n","m"]
 
     const [lang , setLang] =useState(()=>languagesArr())
-    const [keyboardBtn , setKeyboardBtn]=useState(keyboard)
+    const [guessLetter , setGuessLetter]= useState('react') 
+    const [keyboardBtn , setKeyboardBtn]= useState(keyboard)
 
     
     function languagesArr(){
@@ -27,6 +28,12 @@ export default function Main(){
                   }>{n.n}</p>
     })
 
+
+    const RenderGuessLetter = guessLetter.split('').map(n=>{
+        return <p>{n.toUpperCase()}</p>
+    })
+
+
     const RenderKeyboard = keyboardBtn.map(n=>{
         return <button>{n.toUpperCase()}</button>
     })
@@ -41,6 +48,10 @@ export default function Main(){
 
             <section className="languages">
                 {RenderLanguages}
+            </section>
+
+            <section className="guess-letter">
+                {RenderGuessLetter}
             </section>
 
             <section className="keyboard">
