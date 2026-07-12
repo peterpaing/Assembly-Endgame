@@ -11,7 +11,9 @@ export default function Main(){
     const [guess , setGuess] =useState([])
     const [keyboardBtn , setKeyboardBtn]= useState(keyboard)
     
+    
     const wrongCount = guess.filter(n => !guessLetter.includes(n)).length
+    const isGameWon = [...guessLetter].every(letter => guess.includes(letter))
     
     function languagesArr(){
         const langArray= languages.map(n=>{
@@ -25,10 +27,14 @@ export default function Main(){
         return langArray
     }
 
-    const RenderLanguages =lang.map(n=>{
-        return  <p style={{backgroundColor :n.b,
-                   color: n.c}
-                  }>{n.n}</p>
+    const RenderLanguages =lang.map((n,index)=>{
+        return  <p 
+                key={index}
+                style={{backgroundColor :n.b,
+                color: n.c}
+                }
+                className={clsx({ "dead": wrongCount > index })}
+                >{n.n}</p>
     })
 
 
@@ -44,7 +50,7 @@ export default function Main(){
         let btnClass = "normal-btn"
 
         if(isGuess){
-           btnClass = isCorrect ? "correct-btn" : "wrong-btn"
+           btnClass = isCorrect ? "correct" : "wrong"
         }
 
 
@@ -64,10 +70,17 @@ export default function Main(){
     return (
         <main>
 
-            <section className="game-status">
-            <h2>{wrongCount>=8 ?"Game over!": ''}</h2>
-            <p>{wrongCount>=8 ?"You lose! Better start learning Assembly 😭": ''}</p>
-            </section>
+            {isGameWon || wrongCount>=8 ?<section className="game-status">
+
+            <h2>
+                {wrongCount>=8 ?"Game over!": isGameWon ?"You win!" : ''}
+            </h2>
+
+            <p>
+                {wrongCount>=8 ?"You lose! Better start learning Assembly 😭": isGameWon ? "Well done!🎉" : ''}
+            </p>
+
+            </section> : ''}
 
             <section className="languages">
                 {RenderLanguages}
@@ -81,7 +94,7 @@ export default function Main(){
                 {RenderKeyboard}
             </section>
 
-            {wrongCount >= 8 ?<button className="new-game">New Game</button>:''}
+            { isGameWon ||wrongCount >= 8 ?<button className="new-game">New Game</button>:''}
 
         </main>
     )

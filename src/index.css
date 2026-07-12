@@ -85,10 +85,10 @@ main .languages :nth-child(6){
       margin-left: 2.5em;
 } 
 
-main .languages p::before {
+main .languages p.dead::before {
       content: "💀";
       position: absolute;
-      display: none;
+      display: flex;
       align-items: center;
       justify-content: center;
       height: 100%;
@@ -152,11 +152,11 @@ main .keyboard button:nth-child(21) {
   background-color: #FCBA29; 
 }
 
-.correct-btn{
+.correct{
   background-color: #10A95B;
 }
 
-.wrong-btn{
+.wrong{
   background-color: #EC5D49;
 }
 
