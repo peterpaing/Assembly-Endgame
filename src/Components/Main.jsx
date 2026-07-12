@@ -1,5 +1,6 @@
 import { useState } from "react"
 import{languages} from "./languages"
+import clsx from "clsx"
 
 export default function Main(){
 
@@ -7,15 +8,17 @@ export default function Main(){
 
     const [lang , setLang] =useState(()=>languagesArr())
     const [guessLetter , setGuessLetter]= useState('react') 
+    const [guess , setGuess] =useState([])
     const [keyboardBtn , setKeyboardBtn]= useState(keyboard)
-
+    
+    const wrongCount = guess.filter(n => !guessLetter.includes(n)).length
     
     function languagesArr(){
         const langArray= languages.map(n=>{
             return {
                 n : n.name,
                 b : n.backgroundColor,
-                c : n.color
+                c : n.color,
             }
         })
 
@@ -35,15 +38,35 @@ export default function Main(){
 
 
     const RenderKeyboard = keyboardBtn.map(n=>{
-        return <button>{n.toUpperCase()}</button>
+
+        const isGuess = guess.includes(n)
+        const isCorrect = guessLetter.includes(n)
+        let btnClass = "normal-btn"
+
+        if(isGuess){
+           btnClass = isCorrect ? "correct-btn" : "wrong-btn"
+        }
+
+
+        return <button 
+        className={btnClass}
+        onClick={()=>check(n)}
+        >{n.toUpperCase()}
+        </button>
     })
 
+    function check(letter){
+        setGuess(prev => [...prev,letter])
+    }
+
+    
+    
     return (
         <main>
 
             <section className="game-status">
-            <h2>You win!</h2>
-            <p>Well done! 🎉</p>
+            <h2>{wrongCount>=8 ?"Game over!": ''}</h2>
+            <p>{wrongCount>=8 ?"You lose! Better start learning Assembly 😭": ''}</p>
             </section>
 
             <section className="languages">
@@ -57,6 +80,8 @@ export default function Main(){
             <section className="keyboard">
                 {RenderKeyboard}
             </section>
+
+            {wrongCount >= 8 ?<button className="new-game">New Game</button>:''}
 
         </main>
     )
