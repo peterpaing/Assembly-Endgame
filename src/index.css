@@ -35,3 +35,27 @@ header p{
       color:#8E8E8E;
       line-height: 100%;
 }
+
+main .game-status{
+      max-width: 352px;
+      max-height: 59px;
+      margin: 1.25em auto;
+      padding: 0.625em;
+      text-align: center;
+      background-color: #10A95B;
+      border-radius: 4px;
+
+}
+
+main .game-status h2{
+      font-weight: 500;
+      font-size: 1.25rem;
+      line-height: 100%;
+}
+
+main .game-status p{
+      padding-left: 1.5em;
+      font-weight: 500;
+      font-size: 1rem;
+      letter-spacing: 0%;
+}
