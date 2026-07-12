@@ -196,4 +196,17 @@ main .keyboard button:nth-child(21) {
   border: 1px solid #D7D7D7;
 }
 
+@media (max-width:400px) {
+
+main .guess-letter p{
+      width: 35px;
+      height: 35px;
+}
+
+main .keyboard{
+      grid-template-columns: repeat(10,30px);
+  }
+   
+}
+
 
