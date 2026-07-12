@@ -1,0 +1,37 @@
+*{
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+}
+
+body{
+      width: 100vw;
+      height: 100vh;
+      background-color: #282726;
+      font-family: "Hanken Grotesk", sans-serif;
+      color:#F9F4DA;
+}
+
+header{
+     width: 100%;
+     padding-top: 3.125em;
+     display: flex;
+     flex-direction: column;
+     text-align: center;
+     gap: 0.5em;
+}
+
+header h1{
+      font-weight: 500;
+      font-size: 1.25rem;
+      line-height: 100%;
+}
+
+header p{
+      max-width: 352px;
+      margin: auto;
+      font-weight: 500;
+      font-size: 0.875rem;
+      color:#8E8E8E;
+      line-height: 100%;
+}
