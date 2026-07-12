@@ -148,6 +148,7 @@ main .keyboard{
       margin-top: 4em;
       margin-bottom: 2em;
       padding:0 1em;
+      color:#1E1E1E;
       display: grid;
       grid-template-columns: repeat(10,35px);
       justify-content: center;
